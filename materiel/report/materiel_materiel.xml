@@ -1,0 +1,14 @@
+<odoo>
+    <record id="report_materiel_materiel" model="ir.actions.report">
+        <field name="name">Matériel</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">materiel.materiel</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">materiel.report_materiel</field>
+        <field name="report_file">materiel.report_materiel</field>
+        <field name="binding_model_id" ref="model_materiel_materiel"/>
+        <field name="binding_type">report</field>
+
+
+    </record>
+</odoo>

@@ -1,0 +1,164 @@
+<odoo>
+    <template id="report_materiel">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="material">
+                <t t-call="web.external_layout">
+                    <style>
+                        .page {
+                        font-family: Arial, sans-serif;
+                        margin: 60px;
+                        }
+
+                        .material-cards {
+                        display: center;
+                        flex-wrap: wrap;
+                        gap: 20px;
+                        position: relative;
+                        }
+
+                        .material-card {
+                        max-width: 1500px;
+                        max-height: 1500px;
+
+                        border-radius: 5px;
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: row-reverse;
+                        position: relative;
+                        }
+
+                        .material-image {
+
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        margin-top: 50px;
+                        }
+
+                        .material-image img {
+                        max-width: 250px;
+                        max-height: 450px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        }
+
+                        .material-details {
+                        flex: 1;
+                        padding: 10px;
+                        }
+
+                        .material-header {
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 18px;
+                        font-weight: bold;
+                        margin-bottom: 10px;
+                        margin: 10px;
+                        }
+
+                        .material-name {
+                        flex: 1;
+                        }
+
+                        .material-code {
+                        color: #666;
+                        flex: 1;
+
+                        }
+
+                        .info-field {
+                        display: flex;
+                        margin-bottom: 5px;
+                        }
+
+                        .field-label {
+                        justify-content: space-between;
+                        display: flex;
+                        font-weight: bold;
+                        width: 140px;
+                        }
+
+                        .field-value {
+                        flex: 1;
+                        }
+                    </style>
+
+
+                    <div class="page">
+
+                        <div class="material-header">
+                            <h1> </h1>
+
+                            <h1 class="material-code">
+                                  <t t-esc="material.designation"/>
+                            </h1>
+                        </div>
+                        <br></br>
+                        <h1></h1>
+                        <div class="material-cards">
+
+                            <div class="material-card">
+                                <div class="material-image">
+                                    <img t-if="material.photo"
+                                         t-att-src="'data:image/png;base64,' + material.photo.decode('utf-8')"/>
+                                    <img t-if="not material.photo" t-att-src="'/web/static/src/img/placeholder.png'"/>
+                                </div>
+
+                                <div class="material-details">
+                                    <br></br>
+                                    <br></br>
+                                    <div class="material-info">
+                                        <div class="info-field">
+                                            <span class="field-label">Numero d'inventaire</span>
+                                            <span class="field-label">:</span>
+                                            <span class="field-value">
+                                                <t t-esc="material.n_inventaire"/>
+                                            </span>
+                                        </div>
+                                        <br></br>
+                                        <div class="info-field">
+                                            <span class="field-label">Marque</span>
+                                            <span class="field-label">:</span>
+                                            <span class="field-value">
+                                                <t t-esc="material.marque"/>
+                                            </span>
+                                        </div>
+                                        <br></br>
+                                        <div class="info-field">
+                                            <span class="field-label">Serie</span>
+                                            <span class="field-label">:</span>
+                                            <span class="field-value">
+                                                <t t-esc="material.serie"/>
+                                            </span>
+                                        </div>
+                                        <br></br>
+                                        <div class="info-field">
+                                            <span class="field-label">Date d'achat</span>
+                                            <span class="field-label">:</span>
+                                            <span class="field-value">
+                                                <t t-esc="material.date_achat"/>
+                                            </span>
+                                        </div>
+                                        <br></br>
+                                        <div class="info-field">
+                                            <span class="field-label">Configuration</span>
+                                            <span class="field-label">:</span>
+                                            <span class="field-value">
+                                                <t t-esc="material.configuration"/>
+                                            </span>
+                                        </div>
+                                        <br></br>
+                                        <br></br>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

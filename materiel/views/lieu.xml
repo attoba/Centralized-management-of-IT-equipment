@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Equippement informatique"
+              id="menu_materiel_root"
+              sequence="55"/>
+
+    <record id="view_materiel_lieux_form" model="ir.ui.view">
+        <field name="name">materiel.lieux.form</field>
+        <field name="model">materiel.lieu</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="lieu" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="type"/>
+                        <field name="quantite"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Matériel" name="Materiel">
+                            <field name="mat_ids" widget="many2many_list">
+                                <tree>
+                                    <field name="n_inventaire"/>
+                                    <field name="designation"/>
+                                    <field name="marque"/>
+                                    <field name="serie"/>
+                                    <field name="configuration"/>
+                                    <field name="photo" widget="image" class="oe_avatar"/>
+                                </tree>
+                                <form>
+                                    <group>
+
+                                        <field name="n_inventaire"/>
+                                        <field name="designation"/>
+                                        <field name="marque"/>
+                                        <field name="serie"/>
+                                        <field name="date_achat"/>
+                                        <field name="configuration"/>
+                                        <field name="etat"/>
+                                        <field name="cause"
+                                               attrs="{'readonly': [('etat', '=', False)],'required': [('etat', '=', 'En panne')],'invisible': [('etat', '=', 'En bon etat')]}"/>
+                                        <field name="solution"
+                                               attrs="{'readonly': [('etat', '=', False)],'required': [('etat', '=', 'En panne')],'invisible': [('etat', '=', 'En bon etat')]}"/>
+                                        <field name="photo" widget="image"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_materiel_lieux_search" model="ir.ui.view">
+        <field name="name">lieux.search</field>
+        <field name="model">materiel.lieu</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="lieu"/>
+                <field name="type"/>
+                <filter name="group_lieu_id" string="Salle" domain="[{'type':'Salle'}]"/>
+                <filter name="group_lieu_id" string="Personnel" domain="[{'type':'Personnel'}]"/>
+                <filter name="group_lieu_id" string="Bureau" domain="[{'type':'Bureau'}]"/>
+                <filter name="group_lieu_id" string="Amphi" domain="[{'type':'Amphi'}]"/>
+                <filter name="group_lieu_id" string="type"
+                        context="{'group_by':'type'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_materiel_lieux_tree">
+        <field name="name">lieux.tree</field>
+        <field name="model">materiel.lieu</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="lieu"/>
+            </tree>
+
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_lieux_tree">
+        <field name="name">Lieux</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">materiel.lieu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_materiel_lieux_tree"/>
+        <field name="search_view_id" ref="materiel.view_materiel_lieux_search"/>
+    </record>
+
+
+    <menuitem name="Lieux"
+              id="menu_list_lieux"
+              sequence="10"
+              action="action_lieux_tree"
+              parent="menu_materiel_root"
+    />
+
+
+</odoo>

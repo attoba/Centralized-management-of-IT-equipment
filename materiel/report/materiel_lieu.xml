@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_materiel_lieu" model="ir.actions.report">
+        <field name="name">Lieu</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">materiel.lieu</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">materiel.report_lieu</field>
+        <field name="report_file">materiel.report_lieu</field>
+        <field name="binding_model_id" ref="model_materiel_lieu"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
